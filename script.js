@@ -19,3 +19,21 @@ window.addEventListener("scroll", () => {
     }
   });
 });
+
+const uploadInput = document.getElementById("uploadPhoto");
+const preview = document.getElementById("photoPreview");
+
+uploadInput.addEventListener("change", function () {
+    const file = this.files[0];
+    if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            preview.style.backgroundImage = `url('${e.target.result}')`;
+            preview.textContent = "";
+            preview.style.backgroundSize = "cover";
+        };
+
+        reader.readAsDataURL(file);
+    }
+});
